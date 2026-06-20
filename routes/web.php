@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\DonorController;
 
 // ── Homepage ──────────────────────────────────────────────────
 Route::get('/', function () {
@@ -34,4 +35,22 @@ Route::prefix('hospital')->name('hospital.')->group(function () {
 
     // Logout
     Route::post('/logout',   [HospitalController::class, 'logout'])->name('logout');
+});
+
+// ── Donor routes ────────────────────────────────────────────
+Route::prefix('donor')->name('donor.')->group(function () {
+
+    // Register
+    Route::get('/register',  [DonorController::class, 'showRegister'])->name('register');
+    Route::post('/register', [DonorController::class, 'register'])->name('register.submit');
+
+    // Login
+    Route::get('/login',     [DonorController::class, 'showLogin'])->name('login');
+    Route::post('/login',    [DonorController::class, 'login'])->name('login.submit');
+
+    // Dashboard (protected)
+    Route::get('/dashboard', [DonorController::class, 'dashboard'])->name('dashboard');
+
+    // Logout
+    Route::post('/logout',   [DonorController::class, 'logout'])->name('logout');
 });

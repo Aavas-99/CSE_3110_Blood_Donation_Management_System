@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hospital Login — BloodLink</title>
+  <title>Donor Login — BloodLink</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.bunny.net"/>
   <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800&display=swap" rel="stylesheet"/>
@@ -97,7 +97,6 @@
 
     .err-msg { font-size: 0.72rem; color: #f87171; margin-top: 4px; }
 
-    /* Shake animation on wrong credentials */
     .shake { animation: shake 0.4s ease; }
     @keyframes shake {
       0%,100% { transform: translateX(0); }
@@ -140,25 +139,25 @@
           <div class="inline-flex flex-col items-center gap-3">
             <div class="relative">
               <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-red-200">
-                🏥
+                💉
               </div>
               <div class="absolute inset-0 w-14 h-14 bg-red-600/40 rounded-2xl pulse-ring"></div>
             </div>
             <div>
-              <h1 class="text-2xl font-bold text-slate-900">Hospital Login</h1>
-              <p class="text-slate-600 text-sm mt-1">Sign in to your BloodLink dashboard</p>
+              <h1 class="text-2xl font-bold text-slate-900">Donor Login</h1>
+              <p class="text-slate-600 text-sm mt-1">Sign in to your BloodLink donor account</p>
             </div>
           </div>
         </div>
 
-        {{-- Success message (from register redirect) --}}
+        {{-- Success message --}}
         @if(session('success'))
         <div class="mb-6 px-5 py-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm flex items-center gap-3">
           <span>✅</span> {{ session('success') }}
         </div>
         @endif
 
-        {{-- Wrong credentials error --}}
+        {{-- Error message --}}
         @if(session('error'))
         <div class="mb-6 px-5 py-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm flex items-center gap-3" id="errorBanner">
           <span>⚠️</span> {{ session('error') }}
@@ -168,7 +167,7 @@
         {{-- Validation errors --}}
         @if($errors->any())
         <div class="mb-6 px-5 py-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-          <div class="flex items-center gap-2 font-medium mb-1"><span>⚠️</span> Please fix the following:</div>
+          <div class="flex items-center gap-2 font-medium mb-1"><span>⚠️</span> Please fix:</div>
           <ul class="list-disc list-inside space-y-1 text-red-700/90 mt-1">
             @foreach($errors->all() as $error)
               <li>{{ $error }}</li>
@@ -178,7 +177,7 @@
         @endif
 
         <!-- Login Form -->
-        <form action="{{ route('hospital.login.submit') }}" method="POST" id="loginForm" class="space-y-5">
+        <form action="{{ route('donor.login.submit') }}" method="POST" id="loginForm" class="space-y-5">
           @csrf
 
           <!-- Email -->
@@ -191,7 +190,7 @@
                 </svg>
               </span>
               <input type="email" name="email" value="{{ old('email') }}"
-                     placeholder="hospital@example.com"
+                     placeholder="donor@example.com"
                      autofocus
                      class="input-field w-full pl-11 pr-4 py-3 rounded-xl text-sm {{ $errors->has('email') ? 'error' : '' }}"/>
             </div>
@@ -238,8 +237,8 @@
           <!-- Register link -->
           <p class="text-center text-sm text-gray-600">
             Not registered yet?
-            <a href="{{ route('hospital.register') }}" class="text-red-600 hover:text-red-500 font-medium transition-colors">
-              Register your hospital
+            <a href="{{ route('donor.register') }}" class="text-red-600 hover:text-red-500 font-medium transition-colors">
+              Register as donor
             </a>
           </p>
 
@@ -251,9 +250,9 @@
     <div class="mt-5 bg-slate-50 border border-slate-200 rounded-2xl p-4">
       <p class="text-center text-xs text-slate-600 mb-3">Sign in as a different role</p>
       <div class="grid grid-cols-2 gap-2">
-        <a href="{{ url('/donor/login') }}"
+        <a href="{{ route('hospital.login') }}"
            class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-red-50 border border-slate-200 hover:border-red-300 rounded-xl text-xs text-slate-600 hover:text-red-500 transition-all duration-200">
-          💉 Donor Login
+          🏥 Hospital Login
         </a>
         <a href="{{ url('/patient/login') }}"
            class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-red-50 border border-slate-200 hover:border-red-300 rounded-xl text-xs text-slate-600 hover:text-red-500 transition-all duration-200">
@@ -279,11 +278,10 @@
     input.type = isPass ? 'text' : 'password';
     icon.innerHTML = isPass
       ? `<path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>`
-      : `<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-         <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>`;
+      : `<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>`;
   }
 
-  // Submit loading + shake on error
+  // Submit loading
   document.getElementById('loginForm').addEventListener('submit', function() {
     const btn  = document.getElementById('submitBtn');
     const text = document.getElementById('btnText');
@@ -291,7 +289,7 @@
     text.textContent = 'Signing in...';
   });
 
-  // Shake card if error banner exists
+  // Shake on error
   window.addEventListener('load', () => {
     if (document.getElementById('errorBanner')) {
       document.getElementById('loginCard').classList.add('shake');

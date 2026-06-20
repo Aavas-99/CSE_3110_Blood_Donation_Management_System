@@ -10,9 +10,35 @@
   <style>
     * { font-family: 'Inter', sans-serif; }
 
+    :root {
+      color-scheme: light;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    /* Light theme overrides for dark utility classes */
+    .bg-black, .bg-gray-950, .bg-gray-900 {
+      background-color: #f8fafc !important;
+    }
+    .bg-gray-800, .bg-gray-700 {
+      background-color: #eef2ff !important;
+    }
+    .text-white, .text-gray-300, .text-gray-400, .text-gray-500, .text-gray-600 {
+      color: #334155 !important;
+    }
+    .text-gray-700 {
+      color: #1e293b !important;
+    }
+    .border-gray-900, .border-gray-800, .border-white\/8, .border-white\/6, .border-gray-700 {
+      border-color: #e2e8f0 !important;
+    }
+
     /* ── Animated gradient background ── */
     .hero-bg {
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a0000 40%, #2d0000 70%, #0f0f0f 100%);
+      background: linear-gradient(135deg, #fffaf7 0%, #fff5f5 40%, #fff1f2 70%, #f8fafc 100%);
       background-size: 400% 400%;
       animation: gradShift 10s ease infinite;
     }
@@ -98,14 +124,14 @@
 
     /* ── Navbar scroll effect ── */
     .navbar-scrolled {
-      background: rgba(10,10,10,0.95) !important;
+      background: rgba(255,255,255,0.94) !important;
       backdrop-filter: blur(12px);
-      box-shadow: 0 2px 20px rgba(239,68,68,0.15);
+      box-shadow: 0 2px 20px rgba(239,68,68,0.12);
     }
 
     /* ── Hover card glow ── */
     .glow-card:hover {
-      box-shadow: 0 0 30px rgba(239,68,68,0.25);
+      box-shadow: 0 12px 28px rgba(239,68,68,0.12);
       transform: translateY(-4px);
       transition: all 0.3s ease;
     }
@@ -113,16 +139,17 @@
 
     /* ── Role cards ── */
     .role-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 100%);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(135deg, #ffffff 0%, #fff7f7 100%);
+      border: 1px solid #e5e7eb;
       transition: all 0.35s ease;
       cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
     }
     .role-card:hover {
-      border-color: rgba(239,68,68,0.5);
-      background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, rgba(239,68,68,0.1) 100%);
+      border-color: rgba(239,68,68,0.35);
+      background: linear-gradient(135deg, #fff7f7 0%, #fff1f2 100%);
       transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(239,68,68,0.15);
+      box-shadow: 0 20px 40px rgba(239,68,68,0.12);
     }
 
     /* ── FAQ accordion ── */
@@ -133,12 +160,12 @@
 
     /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0f0f0f; }
-    ::-webkit-scrollbar-thumb { background: #ef4444; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #f87171; border-radius: 3px; }
   </style>
 </head>
 
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 overflow-x-hidden">
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
@@ -157,47 +184,48 @@
     </a>
 
     <!-- Nav links (desktop) -->
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-      <a href="#how-it-works" class="hover:text-red-400 transition-colors">How It Works</a>
-      <a href="#blood-groups" class="hover:text-red-400 transition-colors">Blood Groups</a>
-      <a href="#stats"        class="hover:text-red-400 transition-colors">Impact</a>
-      <a href="#faq"          class="hover:text-red-400 transition-colors">FAQ</a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+      <a href="#how-it-works" class="hover:text-red-500 transition-colors">How It Works</a>
+      <a href="#blood-groups" class="hover:text-red-500 transition-colors">Blood Groups</a>
+      <a href="#stats"        class="hover:text-red-500 transition-colors">Impact</a>
+      <a href="#faq"          class="hover:text-red-500 transition-colors">FAQ</a>
     </div>
 
     <!-- Auth buttons -->
     <div class="flex items-center gap-3">
       <!-- Login dropdown -->
       <div class="relative group">
-        <button class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white border border-gray-700 hover:border-red-500 rounded-lg transition-all duration-200">
+        <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-red-500 border border-slate-300 hover:border-red-400 rounded-lg transition-all duration-200 bg-white shadow-sm">
           Sign In ▾
         </button>
-        <div class="absolute right-0 top-full mt-2 w-44 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
-          <a href="{{ url('/donor/login') }}"   class="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-red-950 hover:text-white transition-colors">
-            <span class="text-red-400">💉</span> Donor
+        <div class="absolute right-0 top-full mt-2 w-44 bg-white border border-slate-200 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+          <a href="{{ url('/donor/login') }}"   class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors">
+            <span class="text-red-500">💉</span> Donor
           </a>
-          <a href="{{ url('/hospital/login') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-red-950 hover:text-white transition-colors border-t border-gray-800">
-            <span class="text-red-400">🏥</span> Hospital
+          <a href="{{ url('/hospital/login') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors border-t border-slate-100">
+            <span class="text-red-500">🏥</span> Hospital
           </a>
-          <a href="{{ url('/patient/login') }}"  class="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-red-950 hover:text-white transition-colors border-t border-gray-800">
-            <span class="text-red-400">🩺</span> Patient
+          <a href="{{ url('/patient/login') }}"  class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors border-t border-slate-100">
+            <span class="text-red-500">🩺</span> Patient
           </a>
         </div>
       </div>
 
       <!-- Register dropdown -->
       <div class="relative group">
-        <button class="px-4 py-2 text-sm font-semibold bg-red-600 hover:bg-red-500 text-white rounded-lg transition-all duration-200 shadow-lg shadow-red-900/40">
+        <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-red-500 border border-slate-300 hover:border-red-400 rounded-lg transition-all duration-200 bg-white shadow-sm">
+          
           Register ▾
         </button>
-        <div class="absolute right-0 top-full mt-2 w-44 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
-          <a href="{{ url('/donor/register') }}"   class="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-red-950 hover:text-white transition-colors">
-            <span class="text-red-400">💉</span> As Donor
+        <div class="absolute right-0 top-full mt-2 w-44 bg-white border border-slate-200 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+          <a href="{{ url('/donor/register') }}"   class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors">
+            <span class="text-red-500">💉</span> As Donor
           </a>
-          <a href="{{ url('/hospital/register') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-red-950 hover:text-white transition-colors border-t border-gray-800">
-            <span class="text-red-400">🏥</span> As Hospital
+          <a href="{{ url('/hospital/register') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors border-t border-slate-100">
+            <span class="text-red-500">🏥</span> As Hospital
           </a>
-          <a href="{{ url('/patient/register') }}"  class="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:bg-red-950 hover:text-white transition-colors border-t border-gray-800">
-            <span class="text-red-400">🩺</span> As Patient
+          <a href="{{ url('/patient/register') }}"  class="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors border-t border-slate-100">
+            <span class="text-red-500">🩺</span> As Patient
           </a>
         </div>
       </div>
@@ -222,7 +250,7 @@
 
     <!-- Left: Text -->
     <div>
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-950/60 border border-red-800/50 text-red-400 text-sm font-medium mb-8">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-200 text-red-600 text-sm font-medium mb-8">
         <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
         Every drop counts
       </div>
@@ -234,26 +262,37 @@
 
       <!-- Typewriter sub-heading -->
       <div class="h-10 mb-6">
-        <p id="typewriter-target" class="text-xl text-gray-400 font-medium typewriter"></p>
+        <p id="typewriter-target" class="text-xl text-slate-600 font-medium typewriter"></p>
       </div>
 
-      <p class="text-gray-400 text-lg leading-relaxed mb-10 max-w-lg">
+      <p class="text-slate-600 text-lg leading-relaxed mb-10 max-w-lg">
         BloodLink connects donors, hospitals, and patients in a seamless platform — making emergency blood requests faster, smarter, and life-saving.
       </p>
 
       <div class="flex flex-wrap gap-4">
         <a href="{{ url('/donor/register') }}"
-           class="group flex items-center gap-3 px-8 py-4 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-xl text-base shadow-xl shadow-red-900/40 transition-all duration-300 hover:scale-105">
-          <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C12 2 4 10.5 4 15a8 8 0 0016 0C20 10.5 12 2 12 2z"/>
-          </svg>
-          Become a Donor
-        </a>
+   class="inline-flex items-center gap-2 px-10 py-4 bg-white border-2 border-slate-300 hover:bg-red-500 hover:border-red-300 text-slate-800 font-bold rounded-xl text-base transition-all duration-300 hover:scale-105 group">
+
+  <svg class="w-5 h-5 text-red-600 group-hover:scale-110 transition-transform"
+       viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C12 2 4 10.5 4 15a8 8 0 0016 0C20 10.5 12 2 12 2z"/>
+  </svg>
+
+  <span>Become a Donor</span>
+</a>
         <a href="#how-it-works"
-           class="flex items-center gap-3 px-8 py-4 border border-gray-700 hover:border-red-500 text-gray-300 hover:text-white font-semibold rounded-xl text-base transition-all duration-300 hover:scale-105">
-          How It Works
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </a>
+   class="inline-flex items-center gap-2 px-10 py-4 bg-white border-2 border-slate-300 hover:bg-red-500 hover:border-red-300 text-slate-800 font-bold rounded-xl text-base transition-all duration-300 hover:scale-105 group">
+
+  <span>How It Works</span>
+
+  <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5"
+       fill="none" stroke="currentColor" stroke-width="2"
+       viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round"
+          d="M19 9l-7 7-7-7"/>
+  </svg>
+
+</a>
       </div>
       <br><br>
     </div>
@@ -262,8 +301,8 @@
     <div class="hidden lg:flex justify-center items-center">
       <div class="relative w-80 h-80">
         <!-- Outer glow rings -->
-        <div class="absolute inset-0 rounded-full bg-red-600/5 border border-red-900/30 animate-ping" style="animation-duration:3s"></div>
-        <div class="absolute inset-8 rounded-full bg-red-600/8 border border-red-800/20 animate-ping" style="animation-duration:3s;animation-delay:0.5s"></div>
+        <div class="absolute inset-0 rounded-full bg-red-600/5 border border-red-200 animate-ping" style="animation-duration:3s"></div>
+        <div class="absolute inset-8 rounded-full bg-red-600/8 border border-red-100 animate-ping" style="animation-duration:3s;animation-delay:0.5s"></div>
 
         <!-- Main blood drop -->
         <div class="absolute inset-16 flex items-center justify-center drop-bounce">
@@ -286,73 +325,73 @@
   </div>
 </section>
 
-<section class="py-24 bg-gray-950">
+<section class="py-24 bg-white">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-16 reveal">
       <span class="text-red-500 text-sm font-semibold uppercase tracking-widest">Who Is This For</span>
       <h2 class="text-4xl font-bold mt-3 mb-4">One Platform. Three Roles.</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Whether you want to give, receive, or coordinate — BloodLink has a place for you.</p>
+      <p class="text-slate-600 max-w-xl mx-auto">Whether you want to give, receive, or coordinate — BloodLink has a place for you.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
 
       <!-- Donor -->
       <div class="role-card rounded-2xl p-8 reveal">
-        <div class="w-16 h-16 bg-red-950/60 border border-red-900/50 rounded-2xl flex items-center justify-center mb-6 text-3xl">
+        <div class="w-16 h-16 bg-red-50 border border-red-200 rounded-2xl flex items-center justify-center mb-6 text-3xl">
           💉
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">Donor</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+        <h3 class="text-xl font-bold mb-3 text-slate-900">Donor</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-6">
           Register once, save lives repeatedly. Manage your availability, choose your preferred hospital, and track your donation history.
         </p>
-        <ul class="space-y-2 text-sm text-gray-500 mb-8">
+        <ul class="space-y-2 text-sm text-slate-600 mb-8">
           <li class="flex items-center gap-2"><span class="text-red-500">✓</span> Select your hospital at signup</li>
           <li class="flex items-center gap-2"><span class="text-red-500">✓</span> Toggle availability anytime</li>
           <li class="flex items-center gap-2"><span class="text-red-500">✓</span> View full donation history</li>
         </ul>
         <a href="{{ url('/donor/register') }}"
-           class="block text-center py-3 px-6 bg-red-600/10 hover:bg-red-600 border border-red-800 hover:border-red-500 text-red-400 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
+           class="block text-center py-3 px-6 bg-red-600/10 hover:bg-red-600 border border-red-200 hover:border-red-500 text-red-600 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
           Join as Donor
         </a>
       </div>
 
       <!-- Hospital -->
       <div class="role-card rounded-2xl p-8 reveal" style="transition-delay:0.15s">
-        <div class="w-16 h-16 bg-blue-950/60 border border-blue-900/50 rounded-2xl flex items-center justify-center mb-6 text-3xl">
+        <div class="w-16 h-16 bg-blue-50 border border-blue-200 rounded-2xl flex items-center justify-center mb-6 text-3xl">
           🏥
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">Hospital</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+        <h3 class="text-xl font-bold mb-3 text-slate-900">Hospital</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-6">
           View all blood requests in real time. Match donors to patients, verify eligibility, and record donations — all from one dashboard.
         </p>
-        <ul class="space-y-2 text-sm text-gray-500 mb-8">
-          <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> See all open blood requests</li>
-          <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Verify donor eligibility</li>
-          <li class="flex items-center gap-2"><span class="text-blue-400">✓</span> Download & export necessary reports</li>
+        <ul class="space-y-2 text-sm text-slate-600 mb-8">
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> See all open blood requests</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Verify donor eligibility</li>
+          <li class="flex items-center gap-2"><span class="text-blue-500">✓</span> Download & export necessary reports</li>
         </ul>
         <a href="{{ url('/hospital/register') }}"
-           class="block text-center py-3 px-6 bg-blue-600/10 hover:bg-blue-600 border border-blue-800 hover:border-blue-500 text-blue-400 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
+           class="block text-center py-3 px-6 bg-blue-600/10 hover:bg-blue-600 border border-blue-200 hover:border-blue-500 text-blue-600 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
           Register Hospital
         </a>
       </div>
 
       <!-- Patient -->
       <div class="role-card rounded-2xl p-8 reveal" style="transition-delay:0.3s">
-        <div class="w-16 h-16 bg-purple-950/60 border border-purple-900/50 rounded-2xl flex items-center justify-center mb-6 text-3xl">
+        <div class="w-16 h-16 bg-purple-50 border border-purple-200 rounded-2xl flex items-center justify-center mb-6 text-3xl">
           🩺
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">Patient</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+        <h3 class="text-xl font-bold mb-3 text-slate-900">Patient</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-6">
           Submit a blood request in under a minute. Your request reaches every registered hospital instantly, including emergency alerts.
         </p>
-        <ul class="space-y-2 text-sm text-gray-500 mb-8">
-          <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Request specific blood group</li>
-          <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Mark as emergency</li>
-          <li class="flex items-center gap-2"><span class="text-purple-400">✓</span> Track request status</li>
+        <ul class="space-y-2 text-sm text-slate-600 mb-8">
+          <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Request specific blood group</li>
+          <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Mark as emergency</li>
+          <li class="flex items-center gap-2"><span class="text-purple-500">✓</span> Track request status</li>
         </ul>
         <a href="{{ url('/patient/register') }}"
-           class="block text-center py-3 px-6 bg-purple-600/10 hover:bg-purple-600 border border-purple-800 hover:border-purple-500 text-purple-400 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
+           class="block text-center py-3 px-6 bg-purple-600/10 hover:bg-purple-600 border border-purple-200 hover:border-purple-500 text-purple-600 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
           I Need Blood
         </a>
       </div>
@@ -361,13 +400,13 @@
   </div>
 </section>
 
-<section id="how-it-works" class="py-24 bg-black">
+<section id="how-it-works" class="py-24 bg-slate-50">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-20 reveal">
       <span class="text-red-500 text-sm font-semibold uppercase tracking-widest">The Process</span>
       <h2 class="text-4xl font-bold mt-3 mb-4">How BloodLink Works</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">From request to donation in four simple steps.</p>
+      <p class="text-slate-600 max-w-xl mx-auto">From request to donation in four simple steps.</p>
     </div>
 
     <div class="grid md:grid-cols-4 gap-8 relative">
@@ -377,65 +416,65 @@
 
       <!-- Step 1 -->
       <div class="reveal text-center relative z-10">
-        <div class="w-20 h-20 mx-auto mb-6 bg-gray-900 border-2 border-red-600 rounded-2xl flex items-center justify-center text-3xl glow-card">
+        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
           📝
         </div>
         <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 01</div>
         <h3 class="font-bold text-lg mb-2">Register</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Sign up as a donor, hospital, or patient. Fill your profile with the required information.</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Sign up as a donor, hospital, or patient. Fill your profile with the required information.</p>
       </div>
 
       <!-- Step 2 -->
       <div class="reveal text-center relative z-10" style="transition-delay:0.15s">
-        <div class="w-20 h-20 mx-auto mb-6 bg-gray-900 border-2 border-red-600 rounded-2xl flex items-center justify-center text-3xl glow-card">
+        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
           🩸
         </div>
         <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 02</div>
         <h3 class="font-bold text-lg mb-2">Request</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Patients submit blood requests specifying the required blood group and urgency level.</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Patients submit blood requests specifying the required blood group and urgency level.</p>
       </div>
 
       <!-- Step 3 -->
       <div class="reveal text-center relative z-10" style="transition-delay:0.3s">
-        <div class="w-20 h-20 mx-auto mb-6 bg-gray-900 border-2 border-red-600 rounded-2xl flex items-center justify-center text-3xl glow-card">
+        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
           🔍
         </div>
         <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 03</div>
         <h3 class="font-bold text-lg mb-2">Match</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Hospitals review requests, verify donor eligibility — age, blood group, and 90-day rule.</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Hospitals review requests, verify donor eligibility — age, blood group, and 90-day rule.</p>
       </div>
 
       <!-- Step 4 -->
       <div class="reveal text-center relative z-10" style="transition-delay:0.45s">
-        <div class="w-20 h-20 mx-auto mb-6 bg-gray-900 border-2 border-red-600 rounded-2xl flex items-center justify-center text-3xl glow-card">
+        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
           ❤️
         </div>
         <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 04</div>
         <h3 class="font-bold text-lg mb-2">Donate</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Donation is recorded, donor history updated, and the patient request marked fulfilled.</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Donation is recorded, donor history updated, and the patient request marked fulfilled.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<section id="blood-groups" class="py-24 bg-gray-950">
+<section id="blood-groups" class="py-24 bg-white">
   <div class="max-w-5xl mx-auto px-6">
 
     <div class="text-center mb-16 reveal">
       <span class="text-red-500 text-sm font-semibold uppercase tracking-widest">Quick Reference</span>
       <h2 class="text-4xl font-bold mt-3 mb-4">Blood Group Compatibility</h2>
-      <p class="text-gray-400 max-w-xl mx-auto">Know which blood group can donate to whom before you submit a request.</p>
+      <p class="text-slate-600 max-w-xl mx-auto">Know which blood group can donate to whom before you submit a request.</p>
     </div>
 
-    <div class="reveal overflow-hidden rounded-2xl border border-gray-800">
+    <div class="reveal overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
       <table class="w-full text-sm">
         <thead>
-          <tr class="bg-red-950/60">
-            <th class="px-6 py-4 text-left text-red-400 font-semibold">Blood Group</th>
-            <th class="px-6 py-4 text-left text-red-400 font-semibold">Can Donate To</th>
-            <th class="px-6 py-4 text-left text-red-400 font-semibold">Can Receive From</th>
-            <th class="px-6 py-4 text-left text-red-400 font-semibold">Type</th>
+          <tr class="bg-red-50">
+            <th class="px-6 py-4 text-left text-red-600 font-semibold">Blood Group</th>
+            <th class="px-6 py-4 text-left text-red-600 font-semibold">Can Donate To</th>
+            <th class="px-6 py-4 text-left text-red-600 font-semibold">Can Receive From</th>
+            <th class="px-6 py-4 text-left text-red-600 font-semibold">Type</th>
           </tr>
         </thead>
         <tbody>
@@ -452,16 +491,16 @@
           ];
           @endphp
           @foreach($groups as $i => $g)
-          <tr class="{{ $i % 2 === 0 ? 'bg-gray-900/40' : 'bg-transparent' }} hover:bg-red-950/20 transition-colors border-t border-gray-800/50">
-            <td class="px-6 py-4 font-bold text-white text-base">{{ $g[0] }}</td>
-            <td class="px-6 py-4 text-gray-400">{{ $g[1] }}</td>
-            <td class="px-6 py-4 text-gray-400">{{ $g[2] }}</td>
+          <tr class="{{ $i % 2 === 0 ? 'bg-slate-50' : 'bg-white' }} hover:bg-red-50 transition-colors border-t border-slate-200">
+            <td class="px-6 py-4 font-bold text-slate-900 text-base">{{ $g[0] }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ $g[1] }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ $g[2] }}</td>
             <td class="px-6 py-4">
               <span class="px-3 py-1 rounded-full text-xs font-medium
-                {{ str_contains($g[3], 'Universal') ? 'bg-green-950/60 text-green-400 border border-green-900' : '' }}
-                {{ $g[3] === 'Common' ? 'bg-blue-950/60 text-blue-400 border border-blue-900' : '' }}
-                {{ $g[3] === 'Rare' ? 'bg-yellow-950/60 text-yellow-400 border border-yellow-900' : '' }}
-                {{ $g[3] === 'Most Common' ? 'bg-red-950/60 text-red-400 border border-red-900' : '' }}
+                {{ str_contains($g[3], 'Universal') ? 'bg-green-50 text-green-700 border border-green-200' : '' }}
+                {{ $g[3] === 'Common' ? 'bg-blue-50 text-blue-700 border border-blue-200' : '' }}
+                {{ $g[3] === 'Rare' ? 'bg-amber-50 text-amber-700 border border-amber-200' : '' }}
+                {{ $g[3] === 'Most Common' ? 'bg-red-50 text-red-700 border border-red-200' : '' }}
               ">{{ $g[3] }}</span>
             </td>
           </tr>
@@ -473,7 +512,7 @@
   </div>
 </section>
 
-<section id="stats" class="py-24 bg-black relative overflow-hidden">
+<section id="stats" class="py-24 bg-slate-50 relative overflow-hidden">
 
   <!-- Background decoration -->
   <div class="absolute inset-0 opacity-20"
@@ -496,10 +535,10 @@
       ];
       @endphp
       @foreach($stats as $i => $s)
-      <div class="reveal text-center glow-card bg-gray-900/50 border border-gray-800 rounded-2xl p-8" style="transition-delay:{{ $i * 0.1 }}s">
+      <div class="reveal text-center glow-card bg-white border border-slate-200 rounded-2xl p-8 shadow-sm" style="transition-delay:{{ $i * 0.1 }}s">
         <div class="text-4xl mb-4">{{ $s[3] }}</div>
-        <div class="text-3xl font-extrabold text-red-400 mb-2" data-count="{{ $s[2] }}">{{ $s[0] }}</div>
-        <div class="text-gray-500 text-sm">{{ $s[1] }}</div>
+        <div class="text-3xl font-extrabold text-red-500 mb-2" data-count="{{ $s[2] }}">{{ $s[0] }}</div>
+        <div class="text-slate-600 text-sm">{{ $s[1] }}</div>
       </div>
       @endforeach
     </div>
@@ -507,13 +546,13 @@
   </div>
 </section>
 
-<section class="py-24 bg-gray-950">
+<section class="py-24 bg-white">
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="text-center mb-16 reveal">
       <span class="text-red-500 text-sm font-semibold uppercase tracking-widest">Why Choose Us</span>
       <h2 class="text-4xl font-bold mt-3 mb-4">Built for Emergencies.<br/>Designed for Simplicity.</h2>
-      <p class="text-gray-400 max-w-2xl mx-auto">Every feature is crafted to make blood donation faster, safer, and more accessible for everyone involved.</p>
+      <p class="text-slate-600 max-w-2xl mx-auto">Every feature is crafted to make blood donation faster, safer, and more accessible for everyone involved.</p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6">
@@ -528,13 +567,13 @@
       ];
       @endphp
       @foreach($features as $f)
-      <div class="flex items-start gap-5 p-6 bg-gray-900/50 border border-gray-800 rounded-2xl hover:border-red-900/50 transition-all duration-300 group reveal">
-        <div class="w-12 h-12 flex-shrink-0 bg-gray-800 border border-gray-700 group-hover:border-red-700 rounded-xl flex items-center justify-center text-xl transition-all duration-300">
+      <div class="flex items-start gap-5 p-6 bg-white border border-slate-200 rounded-2xl hover:border-red-200 transition-all duration-300 group reveal shadow-sm">
+        <div class="w-12 h-12 flex-shrink-0 bg-slate-50 border border-slate-200 group-hover:border-red-300 rounded-xl flex items-center justify-center text-xl transition-all duration-300">
           {{ $f[0] }}
         </div>
         <div>
-          <h4 class="font-semibold text-white mb-2 group-hover:text-red-400 transition-colors">{{ $f[1] }}</h4>
-          <p class="text-gray-500 text-sm leading-relaxed">{{ $f[2] }}</p>
+          <h4 class="font-semibold text-slate-900 mb-2 group-hover:text-red-500 transition-colors">{{ $f[1] }}</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">{{ $f[2] }}</p>
         </div>
       </div>
       @endforeach
@@ -543,7 +582,7 @@
   </div>
 </section>
 
-<section id="faq" class="py-24 bg-black">
+<section id="faq" class="py-24 bg-slate-50">
   <div class="max-w-3xl mx-auto px-6">
 
     <div class="text-center mb-16 reveal">
@@ -567,16 +606,16 @@
       ];
       @endphp
       @foreach($faqs as $i => $faq)
-      <div class="bg-gray-900 border border-gray-800 hover:border-gray-700 rounded-xl overflow-hidden transition-colors faq-item">
+      <div class="bg-white border border-slate-200 hover:border-slate-300 rounded-xl overflow-hidden transition-colors faq-item shadow-sm">
         <button onclick="toggleFaq(this)"
-                class="w-full flex items-center justify-between px-6 py-5 text-left text-white font-medium hover:text-red-400 transition-colors">
+                class="w-full flex items-center justify-between px-6 py-5 text-left text-slate-900 font-medium hover:text-red-500 transition-colors">
           <span>{{ $faq[0] }}</span>
-          <svg class="w-5 h-5 text-gray-500 faq-icon flex-shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 text-slate-500 faq-icon flex-shrink-0 ml-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/>
           </svg>
         </button>
         <div class="faq-answer">
-          <p class="px-6 pb-5 text-gray-400 text-sm leading-relaxed">{{ $faq[1] }}</p>
+          <p class="px-6 pb-5 text-slate-600 text-sm leading-relaxed">{{ $faq[1] }}</p>
         </div>
       </div>
       @endforeach
@@ -585,34 +624,34 @@
   </div>
 </section>
 
-<section class="py-24 bg-gradient-to-br from-red-950 via-red-900 to-black relative overflow-hidden">
+<section class="py-24 bg-gradient-to-br from-red-50 via-white to-rose-50 relative overflow-hidden">
   <div class="absolute inset-0 opacity-10"
-       style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                                 linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+       style="background-image: linear-gradient(rgba(239,68,68,0.08) 1px, transparent 1px),
+                                 linear-gradient(90deg, rgba(239,68,68,0.08) 1px, transparent 1px);
               background-size: 40px 40px;">
   </div>
   <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
-    <h2 class="text-5xl font-extrabold mb-6 leading-tight">
+    <h2 class="text-5xl font-extrabold mb-6 leading-tight text-slate-900">
       Your Blood Could Be<br/>
-      <span class="text-red-300">Someone's Last Hope.</span>
+      <span class="text-red-500">Someone's Last Hope.</span>
     </h2>
-    <p class="text-red-200/70 text-lg mb-10 max-w-xl mx-auto">
+    <p class="text-slate-600 text-lg mb-10 max-w-xl mx-auto">
       It takes 10 minutes. It saves a life. Register today and be ready when someone needs you most.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
       <a href="{{ url('/donor/register') }}"
-         class="px-10 py-4 bg-white text-red-700 font-bold rounded-xl text-base hover:bg-red-50 transition-all duration-300 hover:scale-105 shadow-xl">
+        class="px-10 py-4 bg-white border-2 border-slate-300 hover:bg-red-500 hover:border-red-300 text-slate-800 font-bold rounded-xl text-base transition-all duration-300 hover:scale-105">
         Register as Donor
       </a>
       <a href="{{ url('/patient/register') }}"
-         class="px-10 py-4 bg-transparent border-2 border-white/40 hover:border-white text-white font-bold rounded-xl text-base transition-all duration-300 hover:scale-105">
+         class="px-10 py-4 bg-white border-2 border-slate-300 hover:bg-red-500 hover:border-red-300 text-slate-800 font-bold rounded-xl text-base transition-all duration-300 hover:scale-105">
         I Need Blood
       </a>
     </div>
   </div>
 </section>
 
-<footer class="bg-gray-950 border-t border-gray-900 py-12">
+<footer class="bg-white border-t border-slate-200 py-12">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-4 gap-8 mb-10">
 
@@ -624,15 +663,15 @@
               <path d="M12 2C12 2 4 10.5 4 15a8 8 0 0016 0C20 10.5 12 2 12 2z"/>
             </svg>
           </div>
-          <span class="font-bold text-white">Blood<span class="text-red-500">Link</span></span>
+          <span class="font-bold text-slate-900">Blood<span class="text-red-500">Link</span></span>
         </div>
-        <p class="text-gray-500 text-sm leading-relaxed">Connecting donors, hospitals, and patients across Bangladesh.</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Connecting donors, hospitals, and patients across Bangladesh.</p>
       </div>
 
       <!-- Quick links -->
       <div>
-        <h4 class="text-sm font-semibold text-white mb-4">Quick Links</h4>
-        <ul class="space-y-2 text-sm text-gray-500">
+        <h4 class="text-sm font-semibold text-slate-900 mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-slate-600">
           <li><a href="#how-it-works" class="hover:text-red-400 transition-colors">How It Works</a></li>
           <li><a href="#blood-groups" class="hover:text-red-400 transition-colors">Blood Groups</a></li>
           <li><a href="#faq"          class="hover:text-red-400 transition-colors">FAQ</a></li>
@@ -641,8 +680,8 @@
 
       <!-- Register -->
       <div>
-        <h4 class="text-sm font-semibold text-white mb-4">Join Us</h4>
-        <ul class="space-y-2 text-sm text-gray-500">
+        <h4 class="text-sm font-semibold text-slate-900 mb-4">Join Us</h4>
+        <ul class="space-y-2 text-sm text-slate-600">
           <li><a href="{{ url('/donor/register') }}"    class="hover:text-red-400 transition-colors">Register as Donor</a></li>
           <li><a href="{{ url('/hospital/register') }}" class="hover:text-red-400 transition-colors">Register Hospital</a></li>
           <li><a href="{{ url('/patient/register') }}"  class="hover:text-red-400 transition-colors">Request Blood</a></li>
@@ -651,14 +690,14 @@
 
       <!-- Contact -->
       <div>
-        <h4 class="text-sm font-semibold text-white mb-4">Contact</h4>
-        <ul class="space-y-2 text-sm text-gray-500">
+        <h4 class="text-sm font-semibold text-slate-900 mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm text-slate-600">
         </ul>
       </div>
 
     </div>
 
-    <div class="pt-8 border-t border-gray-900 text-center text-xs text-gray-700">
+    <div class="pt-8 border-t border-slate-200 text-center text-xs text-slate-500">
       © {{ date('Y') }} BloodLink — All Rights Reserved.
     </div>
   </div>
