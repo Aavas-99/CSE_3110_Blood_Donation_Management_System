@@ -185,7 +185,7 @@
 
     <!-- Nav links (desktop) -->
     <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-      <a href="#how-it-works" class="hover:text-red-500 transition-colors">How It Works</a>
+      <!-- <a href="#how-it-works" class="hover:text-red-500 transition-colors">How It Works</a> -->
       <a href="#blood-groups" class="hover:text-red-500 transition-colors">Blood Groups</a>
       <a href="#stats"        class="hover:text-red-500 transition-colors">Impact</a>
       <a href="#faq"          class="hover:text-red-500 transition-colors">FAQ</a>
@@ -280,19 +280,7 @@
 
   <span>Become a Donor</span>
 </a>
-        <a href="#how-it-works"
-   class="inline-flex items-center gap-2 px-10 py-4 bg-white border-2 border-slate-300 hover:bg-red-500 hover:border-red-300 text-slate-800 font-bold rounded-xl text-base transition-all duration-300 hover:scale-105 group">
-
-  <span>How It Works</span>
-
-  <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5"
-       fill="none" stroke="currentColor" stroke-width="2"
-       viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round"
-          d="M19 9l-7 7-7-7"/>
-  </svg>
-
-</a>
+      
       </div>
       <br><br>
     </div>
@@ -394,64 +382,6 @@
            class="block text-center py-3 px-6 bg-purple-600/10 hover:bg-purple-600 border border-purple-200 hover:border-purple-500 text-purple-600 hover:text-white rounded-xl text-sm font-semibold transition-all duration-300">
           I Need Blood
         </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="how-it-works" class="py-24 bg-slate-50">
-  <div class="max-w-7xl mx-auto px-6">
-
-    <div class="text-center mb-20 reveal">
-      <span class="text-red-500 text-sm font-semibold uppercase tracking-widest">The Process</span>
-      <h2 class="text-4xl font-bold mt-3 mb-4">How BloodLink Works</h2>
-      <p class="text-slate-600 max-w-xl mx-auto">From request to donation in four simple steps.</p>
-    </div>
-
-    <div class="grid md:grid-cols-4 gap-8 relative">
-
-      <!-- Step connector lines (desktop only) -->
-      <div class="hidden md:block absolute top-12 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-red-900 via-red-600 to-red-900 z-0" style="left:calc(12.5% + 40px);right:calc(12.5% + 40px)"></div>
-
-      <!-- Step 1 -->
-      <div class="reveal text-center relative z-10">
-        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
-          📝
-        </div>
-        <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 01</div>
-        <h3 class="font-bold text-lg mb-2">Register</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">Sign up as a donor, hospital, or patient. Fill your profile with the required information.</p>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="reveal text-center relative z-10" style="transition-delay:0.15s">
-        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
-          🩸
-        </div>
-        <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 02</div>
-        <h3 class="font-bold text-lg mb-2">Request</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">Patients submit blood requests specifying the required blood group and urgency level.</p>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="reveal text-center relative z-10" style="transition-delay:0.3s">
-        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
-          🔍
-        </div>
-        <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 03</div>
-        <h3 class="font-bold text-lg mb-2">Match</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">Hospitals review requests, verify donor eligibility — age, blood group, and 90-day rule.</p>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="reveal text-center relative z-10" style="transition-delay:0.45s">
-        <div class="w-20 h-20 mx-auto mb-6 bg-white border-2 border-red-200 rounded-2xl flex items-center justify-center text-3xl glow-card shadow-sm">
-          ❤️
-        </div>
-        <div class="text-xs text-red-500 font-bold uppercase tracking-widest mb-2">Step 04</div>
-        <h3 class="font-bold text-lg mb-2">Donate</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">Donation is recorded, donor history updated, and the patient request marked fulfilled.</p>
       </div>
 
     </div>
@@ -672,8 +602,8 @@
       <div>
         <h4 class="text-sm font-semibold text-slate-900 mb-4">Quick Links</h4>
         <ul class="space-y-2 text-sm text-slate-600">
-          <li><a href="#how-it-works" class="hover:text-red-400 transition-colors">How It Works</a></li>
           <li><a href="#blood-groups" class="hover:text-red-400 transition-colors">Blood Groups</a></li>
+          <li><a href="#stats"        class="hover:text-red-400 transition-colors">Impact</a></li>
           <li><a href="#faq"          class="hover:text-red-400 transition-colors">FAQ</a></li>
         </ul>
       </div>

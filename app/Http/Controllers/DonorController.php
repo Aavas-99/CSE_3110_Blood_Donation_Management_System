@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Donor;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class DonorController extends Controller
 {
-    // ── Register 
     public function showRegister()
     {
-        $hospitals = Hospital::orderBy('name')->get();
+        $hospitals = DB::select('SELECT hospital_id, name, district FROM hospitals ORDER BY name');
+
         return view('donor.register', compact('hospitals'));
     }
 
@@ -45,26 +45,29 @@ class DonorController extends Controller
             'hospital_id.exists'        => 'Selected hospital is invalid.',
         ]);
 
-        Donor::create([
-            'name'          => $request->name,
-            'email'         => $request->email,
-            'password'      => $request->password,
-            'phone'         => $request->phone,
-            'date_of_birth' => $request->date_of_birth,
-            'blood_group'   => $request->blood_group,
-            'gender'        => $request->gender,
-            'district'      => $request->district,
-            'address'       => $request->address,
-            'hospital_id'   => $request->hospital_id,
-            'status'        => $request->status,
-            'last_donated_at' => $request->last_donated_at,
-        ]);
+        DB::insert(
+            'INSERT INTO donors (name, email, password, phone, date_of_birth, blood_group, gender, district, address, hospital_id, status, last_donated_at, created_at, updated_at) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSTIMESTAMP, NULL)',
+            [
+                $request->name,
+                $request->email,
+                Hash::make($request->password),
+                $request->phone,
+                $request->date_of_birth,
+                $request->blood_group,
+                $request->gender,
+                $request->district,
+                $request->address,
+                $request->hospital_id,
+                $request->status,
+                $request->last_donated_at,
+            ]
+        );
 
         return redirect()->route('donor.login')
                          ->with('success', 'Donor registered successfully! Please sign in.');
     }
 
-    // ── Login 
     public function showLogin()
     {
         if (session()->has('donor_id')) {
@@ -83,7 +86,10 @@ class DonorController extends Controller
             'password.required' => 'Password is required.',
         ]);
 
-        $donor = Donor::where('email', $request->email)->first();
+        $donor = DB::selectOne(
+            'SELECT donor_id, name, email, password FROM donors WHERE email = ?',
+            [$request->email]
+        );
 
         if (!$donor || !Hash::check($request->password, $donor->password)) {
             return back()
@@ -102,7 +108,6 @@ class DonorController extends Controller
                          ->with('success', 'Welcome back, ' . $donor->name . '!');
     }
 
-    // ── Dashboard (placeholder) 
     public function dashboard()
     {
         if (!session()->has('donor_id')) {
@@ -112,7 +117,6 @@ class DonorController extends Controller
         return view('donor.dashboard');
     }
 
-    // ── Logout 
     public function logout()
     {
         session()->forget(['donor_id', 'donor_name', 'donor_email', 'role']);
